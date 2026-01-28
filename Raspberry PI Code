@@ -1,0 +1,44 @@
+#Base Code - Defines Pins - Assumed Present
+#Assumed Rotary Encoder and Buzzer Code
+
+
+#Set Up PID Variables 
+FOLLOW_DISTANCE = 20.0  # Target Distance (Maintained While Following)
+kp = 2.5  # Proportional Gain
+ki =  0.25 # Integral Term
+kd = 0.5  # Rate of Change of Error
+
+# Sum of Prev. Errors + Integral
+integral  = 0
+prev_error = 0
+
+while True:
+    if GPIO.input(PIN_LIMIT_SW) == GPIO.LOW:
+        break
+	
+    current_dist = us_sensor.distance * 100  # Meter to Centimeter Conversion
+	
+    # Calculate Error (Proportional Gain)
+    error = current_dist - FOLLOW_DISTANCE 
+
+    # Calculate Derivative (Rate of Change of Error)
+    derivative = error - prev_error
+	
+    # Calculate Integral (Accumulation of Error)
+    integral += error * 0.1
+	
+    # Calculate Output (P + I + D Control)
+    output = (kp * error) + (ki * integral ) + (kd * derivative) 
+	
+    drive_robot(output)  # Drive_robot Automatically Clamps to +/- 100
+    prev_error = error
+	
+    # Prints Output to 0 Decimal Place and Error to 1 Decimal Place
+    if  error  >  3:
+	val_error = “Too Far”
+   elif error == 0:
+ 	val_error = “On Target”
+
+    lcd.printer(f" PID: {output:.0f}, f” {val_error}")
+    time.sleep(0.1)  # Faster Sampling for PID and reduces and saves processing power
+ 
