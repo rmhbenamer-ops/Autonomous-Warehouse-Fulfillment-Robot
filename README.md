@@ -24,6 +24,23 @@ This project focuses on integrating sensor input, motor control, and PID-based f
 
 See the included hardware map PDF for the component layout and connections.
 
+## Methods and Analysis
+
+**Data Processing**
+- Loaded student records from CSV files and converted values to appropriate numeric types where possible.
+- Filtered records by selected student attributes and calculated average grades using FallGrade and WinterGrade.
+
+**Visualization**
+- Used Matplotlib to generate histograms for numerical attributes and bar charts for categorical attributes.
+
+**Relationship Analysis**
+- Grouped students by selected attributes and calculated average grades for each group.
+- Applied NumPy polynomial fitting to model relationships between student attributes and average grades.
+
+**Dataset**
+- Number of records analyzed: 500+
+- Tools: Python, NumPy, Matplotlib
+
 ## Future Improvements
 
 - Separate sensor processing, PID calculations, and motor control into reusable functions.
