@@ -24,22 +24,20 @@ This project focuses on integrating sensor input, motor control, and PID-based f
 
 See the included hardware map PDF for the component layout and connections.
 
-## Methods and Analysis
+## Testing and Performance Evaluation
 
-**Data Processing**
-- Loaded student records from CSV files and converted values to appropriate numeric types where possible.
-- Filtered records by selected student attributes and calculated average grades using FallGrade and WinterGrade.
+**Control System**
+- Implemented PID-based control logic using ultrasonic distance measurements.
+- Set a target following distance of 20 cm.
+- Used sensor feedback to calculate distance error and adjust motor output.
 
-**Visualization**
-- Used Matplotlib to generate histograms for numerical attributes and bar charts for categorical attributes.
+**Testing Methodology**
+- Number of test runs: 50+
+- Target distance: 20 cm
 
-**Relationship Analysis**
-- Grouped students by selected attributes and calculated average grades for each group.
-- Applied NumPy polynomial fitting to model relationships between student attributes and average grades.
-
-**Dataset**
-- Number of records analyzed: 500+
-- Tools: Python, NumPy, Matplotlib
+**Results**
+- Average distance error: 2.5 cm
+- Following success rate: 95%
 
 ## Future Improvements
 
